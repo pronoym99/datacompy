@@ -367,9 +367,7 @@ class SparkCompare:
             base_rows = self._get_unq_base_rows()
             base_rows.createOrReplaceTempView("baseRows")
             self.base_df.createOrReplaceTempView("baseTable")
-            join_condition = " AND ".join(
-                ["A." + name + "=B." + name for name in self._join_column_names]
-            )
+            join_condition = " AND ".join(f'A.{name}=B.{name}' for name in self._join_column_names)
             sql_query = "select A.* from baseTable as A, baseRows as B where {}".format(
                 join_condition
             )
