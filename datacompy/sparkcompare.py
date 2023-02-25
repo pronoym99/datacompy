@@ -306,7 +306,7 @@ class SparkCompare:
         if not columns:
             return
 
-        max_length = max([len(col) for col in columns] + [11])
+        max_length = max(max(columns, key=len), 11)
         format_pattern = f"{{:{max_length}s}}"
 
         print(f"\n****** Columns In {base_or_compare.title()} Only ******", file=myfile)
